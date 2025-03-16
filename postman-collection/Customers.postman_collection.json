@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "7bb0ac08-5ebf-4df1-b22b-4b2fc327357f",
+		"name": "Customers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4918530"
+	},
+	"item": [
+		{
+			"name": "File",
+			"item": [
+				{
+					"name": "GET File Download",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/taksi/Desktop/RO_Picture1736852405.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8082/customers/01959300-86ae-7023-ba29-fbeda88edfa8/download",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customers",
+								"01959300-86ae-7023-ba29-fbeda88edfa8",
+								"download"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST File Upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/taksi/Desktop/RO_Picture1736852405.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8082/files/01959300-86ae-7023-ba29-fbeda88edfa8/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"files",
+								"01959300-86ae-7023-ba29-fbeda88edfa8",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET Customer by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/customers/01959300-86ae-7023-ba29-fbeda88edfa8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"customers",
+						"01959300-86ae-7023-ba29-fbeda88edfa8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Wick\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"documentId\": \"019593d750667bb7a397fd9a0ad7dd7d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Customers",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Johns\",\r\n    \"lastName\": \"Wick\",\r\n    \"email\": \"JohnWick@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/customers/01959079-8635-7587-bee8-f0d5bd0091b3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"customers",
+						"01959079-8635-7587-bee8-f0d5bd0091b3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Customers",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Johns\",\r\n    \"lastName\": \"Wick\",\r\n    \"email\": \"JohnWick@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/customers/01959079-8635-7587-bee8-f0d5bd0091b3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"customers",
+						"01959079-8635-7587-bee8-f0d5bd0091b3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,66 @@
+server:
+  port: 8082
+
+management:
+  tracing:
+    enabled: true
+    propagation:
+      type: B3
+    sampling:
+      probability: 1.0
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/test
+    username: root
+    password: root
+    driverClassName: org.postgresql.Driver
+
+  redis:
+    host: localhost
+    port: 6379
+    password: password
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1MB
+      max-request-size: 1MB
+
+  kafka:
+    bootstrap-servers: localhost:19092
+    properties:
+      schema.registry.url: http://localhost:8081
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer
+    consumer:
+      auto-offset-reset: earliest  # หรือ latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.protobuf.KafkaProtobufDeserializer
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: _REPLACE_
+    password: _REPLACE_
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: true
+
+application-constants:
+  file-base-path: /file-upload
+  kafka-consumer-group-id: customer-local-group-id
+  kafka-send-notification-topic: send-notification-request
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

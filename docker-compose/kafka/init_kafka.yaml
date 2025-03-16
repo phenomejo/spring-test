@@ -1,0 +1,24 @@
+version: '3.7'
+
+name: kafka
+services:
+  init-kafka:
+    image: confluentinc/cp-kafka:${KAFKA_VERSION}
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      # block until kafka is reachable
+      kafka-topics --bootstrap-server kafka-broker:9092 --list
+
+      echo -e 'Deleting kafka topics'
+      kafka-topics --bootstrap-server kafka-broker:9092 --topic send-notification-request --delete --if-exists
+
+
+      echo -e 'Creating kafka topics'
+      kafka-topics --bootstrap-server kafka-broker:9092 --create --if-not-exists --topic send-notification-request --replication-factor 1 --partitions 1
+
+      echo -e 'Successfully created the following topics:'
+      kafka-topics --bootstrap-server kafka-broker:9092 --list
+      "
+    networks:
+      - ${GLOBAL_NETWORK:-kafka}
