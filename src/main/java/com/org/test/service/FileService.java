@@ -1,5 +1,6 @@
 package com.org.test.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.org.test.dto.FileMetadataDTO;
 import com.org.test.exception.custom.ResourceNotFoundException;
@@ -39,8 +40,12 @@ public class FileService {
 
     public ResponseEntity<StreamingResponseBody> downloadFile(String documentId) {
 
-        FileMetadataDTO metadata = (FileMetadataDTO) redisTemplate.opsForValue().get(documentId);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Object object =  redisTemplate.opsForValue().get(documentId);
+        FileMetadataDTO metadata = objectMapper.convertValue(object, FileMetadataDTO.class);
         if (Objects.isNull(metadata) || Objects.isNull(metadata.getBase64())) {
+            log.error("File not found: {}", documentId);
             throw new ResourceNotFoundException("File not found");
         }
 

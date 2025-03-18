@@ -41,7 +41,10 @@ public class CustomerService {
     public ResponseEntity<CustomerDTO> getCustomerById(UUID customerId) {
         var customerDTO = customerRepository.findById(customerId)
                 .map(customerMapper::fromEntity)
-                .orElseThrow(() -> new ResourceNotFoundException("CustomerId not found"));
+                .orElseThrow(() -> {
+                    log.error("CustomerId not found: {}", customerId);
+                    return new ResourceNotFoundException("CustomerId not found");
+                });
 
         return ResponseEntity.ok(customerDTO);
     }
@@ -49,6 +52,7 @@ public class CustomerService {
     public ResponseEntity<CustomerDTO> createCustomer(CustomerDTO customer) {
         List<CustomerEntity> entities = customerRepository.findByEmail(customer.getEmail());
         if (!CollectionUtils.isEmpty(entities)) {
+            log.error("Email: {} already exist", customer.getEmail());
             throw new InvalidInputException("Email already exist");
         }
 
@@ -64,6 +68,7 @@ public class CustomerService {
     public ResponseEntity<CustomerDTO> updateCustomer(UUID customerId, CustomerDTO updatedCustomer) {
 
         if (Objects.isNull(updatedCustomer.getCustomerId())) {
+            log.error("CustomerId must not empty");
             throw new InvalidInputException("CustomerId must not empty");
         }
 
@@ -73,7 +78,10 @@ public class CustomerService {
                     return customerRepository.save(customer);
                 })
                 .map(customerMapper::fromEntity)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer not found"));
+                .orElseThrow(() -> {
+                    log.error("Customer not found: {}", customerId);
+                    return new ResourceNotFoundException("Customer not found");
+                });
 
         return ResponseEntity.ok(customerDTO);
     }

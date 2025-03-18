@@ -47,7 +47,7 @@ public class NotificationListener {
             mailSender.send(emailMessage);
             log.info("Send Notification to E-Mail: {} successfully", notificationMessage.getEmail());
         } catch (MailException ex) {
-            log.error("Email notification Exception: {}", ex.getMessage());
+            log.error("Email notification Exception: ", ex);
         }
     }
 }

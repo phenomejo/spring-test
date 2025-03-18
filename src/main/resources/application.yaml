@@ -33,6 +33,8 @@ spring:
       max-request-size: 1MB
 
   kafka:
+    template.observation-enabled: true
+    listener.observation-enabled: true
     bootstrap-servers: localhost:19092
     properties:
       schema.registry.url: http://localhost:8081
@@ -47,8 +49,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: _REPLACE_
-    password: _REPLACE_
+    username: taksinjo15@gmail.com
+    password: "hgrd wrdy reqj kvva"
     properties:
       mail:
         smtp:
@@ -64,3 +66,12 @@ application-constants:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+#logging:
+#  level:
+#    root: INFO
+#  file:
+#    name: logs/app.log
+#  pattern:
+#    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] traceId=%X{traceId} spanId=%X{spanId} %-5level %logger{36} - %msg%n"
+#    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] traceId=%X{traceId} spanId=%X{spanId} %-5level %logger{36} - %msg%n"
