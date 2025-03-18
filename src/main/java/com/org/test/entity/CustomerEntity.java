@@ -48,4 +48,6 @@ public class CustomerEntity {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @Column(name = "mobile")
+    private String mobile;
 }

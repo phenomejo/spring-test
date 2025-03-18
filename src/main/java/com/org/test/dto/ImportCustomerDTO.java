@@ -1,29 +1,24 @@
 package com.org.test.dto;
 
-import jakarta.validation.constraints.NotNull;
+import com.univocity.parsers.annotations.Parsed;
 import jakarta.validation.constraints.Pattern;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO {
+public class ImportCustomerDTO {
 
-    private UUID customerId;
+    @Parsed(field = "firstName")
     private String firstName;
+    @Parsed(field = "lastName")
     private String lastName;
 
-    @NotNull
+    @Parsed(field = "email")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
-
-    private String documentId;
-
-    private String mobile;
 }

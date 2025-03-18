@@ -10,6 +10,13 @@ management:
       probability: 1.0
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: never
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -59,7 +66,6 @@ spring:
             enable: true
 
 application-constants:
-  file-base-path: /file-upload
   kafka-consumer-group-id: customer-local-group-id
   kafka-send-notification-topic: send-notification-request
 

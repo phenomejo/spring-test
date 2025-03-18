@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(value = "application-constants")
 public class ApplicationConstants {
 
-    private String fileBasePath;
-
     private String kafkaConsumerGroupId;
     private String kafkaSendNotificationTopic;
 }

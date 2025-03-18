@@ -2,6 +2,7 @@ package com.org.test.mapper;
 
 import com.org.test.dto.GenericPaginationDTO;
 import com.org.test.dto.GenericPaginationDTO.Pagination;
+import com.org.test.dto.ImportCustomerDTO;
 import com.org.test.entity.CustomerEntity;
 import com.org.test.dto.CustomerDTO;
 import org.mapstruct.AfterMapping;
@@ -42,4 +43,10 @@ public interface CustomerMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     void toUpdateCustomer(@MappingTarget CustomerEntity entity, CustomerDTO dto);
+
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "customerId", expression = "java(com.github.f4b6a3.uuid.UuidCreator.getTimeOrderedEpoch())")
+    CustomerEntity toImportCustomer(ImportCustomerDTO importCustomer);
+
 }
